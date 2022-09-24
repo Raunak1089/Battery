@@ -1,0 +1,20 @@
+	 #batt{
+	     padding: 30px 0px;
+	     height: 100px;
+	     width: 300px;
+	     margin: auto;
+	     color: white;
+	     font-weight: 700;
+	     text-align: center;
+	 }
+	 
+	 #charged{
+	     padding: 30px 0px;
+	     font-size: 5em;
+	 }
+	 
+	 #time_left{
+	     margin-top: -60px;
+	     padding: 30px 0px;
+	     font-size: 1em;
+	 }
