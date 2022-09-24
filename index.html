@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+	 <title>Battery</title>
+	 <meta charset="UTF-8"/>
+	 <link rel="stylesheet" href="" type="text/css"/>
+ </head>
+	 <body>
+	 <div id="batt"><div id="charged"></div><div id="time_left"></div></div>
+	 <style>
+	 #batt{
+	     padding: 30px 0px;
+	     height: 100px;
+	     width: 300px;
+	     margin: auto;
+	     color: white;
+	     font-weight: 700;
+	     text-align: center;
+	 }
+	 
+	 #charged{
+	     padding: 30px 0px;
+	     font-size: 5em;
+	 }
+	 
+	 #time_left{
+	     margin-top: -60px;
+	     padding: 30px 0px;
+	     font-size: 1em;
+	 }
+	 
+	 </style>
+	<script>
+function notif(t, b, i="https://raunak1089.github.io/Required-files/me-circle.png"){
+  Notification.requestPermission().then(perm => {
+      if(perm ==='granted'){
+          const notification = new Notification(t, {
+              body: b,
+              data: {hello: "world"},
+              icon: i,
+              tag: "Welcome message",
+      })
+          // notification.addEventListener("click", ()=>{alert("Thanks for attending my notification!")})
+      }
+  })
+}
+
+notif('Battery Status', 'Battery level checker is activated. Keep track on your battery level!');
+
+navigator.getBattery().then((battery) => {
+  function updateAllBatteryInfo() {
+    updateChargeInfo();
+    updateLevelInfo();
+    updateChargingInfo();
+    updateDischargingInfo();
+  }
+  updateAllBatteryInfo();
+
+  battery.addEventListener("chargingchange", () => {
+    updateChargeInfo();
+  });
+  function updateChargeInfo() {
+    console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
+    if(battery.charging){document.querySelector('#charged').style.background="#05ff05";}
+    else{document.querySelector('#charged').style.background="#c70039";}
+  }
+
+  battery.addEventListener("levelchange", () => {
+    updateLevelInfo();
+  });
+  function updateLevelInfo() {
+    console.log(`Battery level: ${battery.level * 100}%`);
+    document.querySelector('#charged').innerHTML = Math.round(battery.level * 100) + '%';
+
+    if(battery.level>=0.9 & battery.charging){notif("Battery Status", "Battery has reached 90%. Please disconnect the charger!")}
+    if(battery.level<=0.8 & !battery.charging){notif("Battery Status", "Battery has reached 80%. Please connect the charger!")}
+  }
+
+  battery.addEventListener("chargingtimechange", () => {
+    updateChargingInfo();
+  });
+  function updateChargingInfo() {
+    console.log(`Battery charging time: ${battery.chargingTime} seconds`);
+    if(battery.charging){
+        hr = Math.floor(battery.chargingTime/3600);
+        min = Math.floor((battery.chargingTime%3600)/60);
+    }
+    else{
+        hr = Math.floor(battery.dischargingTime/3600);
+        min = Math.floor((battery.dischargingTime%3600)/60);
+    }
+    document.querySelector('#time_left').innerHTML = hr + ' h ' + min + ' m';
+  }
+
+  battery.addEventListener("dischargingtimechange", () => {
+    updateDischargingInfo();
+  });
+  function updateDischargingInfo() {
+    console.log(`Battery discharging time: ${battery.dischargingTime} seconds`);
+  }
+});
+
+	</script>
+	 </body>
+ </html>
