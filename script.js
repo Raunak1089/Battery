@@ -32,8 +32,8 @@ navigator.getBattery().then((battery) => {
   });
   function updateChargeInfo() {
     console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
-    if(battery.charging){document.querySelector('#charged').style.background="#05ff05";}
-    else{document.querySelector('#charged').style.background="#c70039";}
+    if(battery.charging){document.querySelector('#batt').style.background="#05ff05";}
+    else{document.querySelector('#batt').style.background="#c70039";}
   }
 
   battery.addEventListener("levelchange", () => {
