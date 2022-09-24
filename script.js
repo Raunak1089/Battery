@@ -1,3 +1,7 @@
+
+function hlab(x){document.querySelector('#h_label').innerHTML=x.value}
+function llab(x){document.querySelector('#l_label').innerHTML=x.value}
+
 function notif(t, b, i="https://raunak1089.github.io/Required-files/me-circle.png"){
   Notification.requestPermission().then(perm => {
       if(perm ==='granted'){
@@ -39,8 +43,10 @@ navigator.getBattery().then((battery) => {
     console.log(`Battery level: ${battery.level * 100}%`);
     document.querySelector('#charged').innerHTML = Math.round(battery.level * 100) + '%';
 
-    if(battery.level>=0.9 & battery.charging){notif("Battery Status", "Battery has reached 90%. Please disconnect the charger!")}
-    if(battery.level<=0.3 & !battery.charging){notif("Battery Status", "Battery has reached 30%. Please connect the charger!")}
+    h = Number(document.querySelector('#h_label').value)/100;
+    l = Number(document.querySelector('#l_label').value)/100;
+    if(battery.level>=h & battery.charging){notif("Battery Status", `Battery has reached ${100*h}%. Please disconnect the charger!`)}
+    if(battery.level<=l & !battery.charging){notif("Battery Status", `Battery has reached ${100*l}%. Please connect the charger!`)}
   }
 
   battery.addEventListener("chargingtimechange", () => {
