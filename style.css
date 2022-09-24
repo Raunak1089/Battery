@@ -6,7 +6,18 @@
 	     color: white;
 	     font-weight: 700;
 	     text-align: center;
+	     border-radius: 20px;
 	 }
+	 
+	 #charged{
+	     font-size: 5em;
+	 }
+	 
+	 #time_left{
+	     padding: 10px 0px;
+	     font-size: 1em;
+	 }
+
 	 
    #sliders{
        padding: 30px 0px;
@@ -29,13 +40,3 @@
 	     text-align: center;
    }
 
-	 #charged{
-	     padding: 30px 0px;
-	     font-size: 5em;
-	 }
-	 
-	 #time_left{
-	     margin-top: -60px;
-	     padding: 30px 0px;
-	     font-size: 1em;
-	 }
