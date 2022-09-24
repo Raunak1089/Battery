@@ -43,10 +43,10 @@ navigator.getBattery().then((battery) => {
     console.log(`Battery level: ${battery.level * 100}%`);
     document.querySelector('#charged').innerHTML = Math.round(battery.level * 100) + '%';
 
-    h = Number(document.querySelector('#highest').value)/100;
-    l = Number(document.querySelector('#lowest').value)/100;
-    if(battery.level>=h & battery.charging){notif("Battery Status", `Battery has reached ${100*h}%. Please disconnect the charger!`)}
-    if(battery.level<=l & !battery.charging){notif("Battery Status", `Battery has reached ${100*l}%. Please connect the charger!`)}
+    let hh = (document.querySelector('#highest').value)/100;
+    let ll = (document.querySelector('#lowest').value)/100;
+    if(battery.level>=hh & battery.charging){notif("Battery Status", `Battery has reached ${100*hh}%. Please disconnect the charger!`)}
+    if(battery.level<=ll & !battery.charging){notif("Battery Status", `Battery has reached ${100*ll}%. Please connect the charger!`)}
   }
 
   battery.addEventListener("chargingtimechange", () => {
