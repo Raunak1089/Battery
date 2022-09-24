@@ -7,6 +7,12 @@
  </head>
 	 <body>
 	 <div id="batt"><div id="charged"></div><div id="time_left"></div></div>
+  <div id="sliders">
+   <input type="range" id="highest" min="0" max="100" step="1" value="90" onmousemove="hlab(this)" ontouchmove="hlab(this)" onclick="hlab(this)">
+   <span class="label">Maximum level: </span><span id="h_label" class="label">90</span><span class="label">%</span>
+   <input type="range" id="lowest" min="0" max="100" step="1" value="30" onmousemove="llab(this)" ontouchmove="llab(this)" onclick="llab(this)">
+   <span class="label">Minimum level: </span><span id="l_label" class="label">30</span><span class="label">%</span>
+  </div>
 
 	<script src="script.js"></script>
 	 </body>
