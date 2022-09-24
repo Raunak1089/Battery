@@ -73,7 +73,7 @@ navigator.getBattery().then((battery) => {
     document.querySelector('#charged').innerHTML = Math.round(battery.level * 100) + '%';
 
     if(battery.level>=0.9 & battery.charging){notif("Battery Status", "Battery has reached 90%. Please disconnect the charger!")}
-    if(battery.level<=0.8 & !battery.charging){notif("Battery Status", "Battery has reached 80%. Please connect the charger!")}
+    if(battery.level<=0.65 & !battery.charging){notif("Battery Status", "Battery has reached 65%. Please connect the charger!")}
   }
 
   battery.addEventListener("chargingtimechange", () => {
