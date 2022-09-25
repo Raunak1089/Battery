@@ -1,3 +1,4 @@
+let alarm = new Audio('https://raunak1089.github.io/Required-files/alarm-tone.wav');
 
 function hlab(x){document.querySelector('#h_label').innerHTML=x.value}
 function llab(x){document.querySelector('#l_label').innerHTML=x.value}
@@ -15,6 +16,15 @@ function notif(t, b, i="https://raunak1089.github.io/Required-files/me-circle.pn
       }
   })
 }
+
+  function play_audio(){
+  //var put = document.createElement('audio');
+  //put.id = 'firesound';
+  //put.src = 'https://raunak1089.github.io/Required-files/' + link; 
+  //document.body.appendChild(put);
+  alarm.play();
+  //setTimeout(function(){document.getElementById("firesound").remove(); }, 1000);
+  }
 
 notif('Battery Status', 'Battery level checker is activated. Keep track on your battery level!');
 
@@ -45,8 +55,8 @@ navigator.getBattery().then((battery) => {
 
     let hh = (document.querySelector('#highest').value)/100;
     let ll = (document.querySelector('#lowest').value)/100;
-    if(battery.level>=hh & battery.charging){notif("Battery Status", `Battery has reached ${100*hh}%. Please disconnect the charger!`)}
-    if(battery.level<=ll & !battery.charging){notif("Battery Status", `Battery has reached ${100*ll}%. Please connect the charger!`)}
+    if(battery.level>=hh & battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${100*hh}%. Please disconnect the charger!`)}
+    if(battery.level<=ll & !battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${100*ll}%. Please connect the charger!`)}
   }
 
   battery.addEventListener("chargingtimechange", () => {
