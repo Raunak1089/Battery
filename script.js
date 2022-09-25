@@ -45,6 +45,11 @@ navigator.getBattery().then((battery) => {
     console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
     if(battery.charging){document.querySelector('#batt').style.background="#05ff05";}
     else{document.querySelector('#batt').style.background="#c70039";}
+    let hh = (document.querySelector('#highest').value)/100;
+    let ll = (document.querySelector('#lowest').value)/100;
+    if(battery.level>=hh & battery.charging){play_audio();}else{alarm.pause();}
+    if(battery.level<=ll & !battery.charging){play_audio();}else{alarm.pause();}
+
   }
 
   battery.addEventListener("levelchange", () => {
