@@ -1,6 +1,8 @@
 let alarm = new Audio('https://raunak1089.github.io/Required-files/alarm-tone.wav');
 alarm.loop=true;
 
+
+
 function hlab(x){document.querySelector('#h_label').innerHTML=x.value}
 function llab(x){document.querySelector('#l_label').innerHTML=x.value}
 
@@ -61,8 +63,17 @@ navigator.getBattery().then((battery) => {
 
     let hh = (document.querySelector('#highest').value)/100;
     let ll = (document.querySelector('#lowest').value)/100;
-    if(battery.level>=hh & battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${Math.round(battery.level * 100)}%. Please disconnect the charger!`)}else{alarm.pause();}
-    if(battery.level<=ll & !battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${Math.round(battery.level * 100)}%. Please connect the charger!`)}else{alarm.pause();}
+    if(battery.level>=hh & battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${Math.round(battery.level * 100)}%. Please disconnect the charger!`);    Push.create("Hello world!", {
+    body: "How's it hangin'?",
+    icon: 'https://raunak1089.github.io/Required-files/me-circle.png',
+    timeout: 10000,
+    onClick: function () {
+        window.focus();
+        this.close();
+    }
+});
+}
+    if(battery.level<=ll & !battery.charging){play_audio(); notif("Battery Status", `Battery has reached ${Math.round(battery.level * 100)}%. Please connect the charger!`)}
   }
 
   battery.addEventListener("chargingtimechange", () => {
