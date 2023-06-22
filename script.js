@@ -1,4 +1,3 @@
-
 let X = []; let Y = [];
 
 function hlab(x){document.querySelector('#h_label').innerHTML=x.value}
@@ -18,6 +17,12 @@ navigator.getBattery().then((battery) => {
     updateChargeInfo();
     X = []; Y = [];    
     console.log(X); console.log(Y);
+    tab_html='<tr><th>Percentage</th><th>Time(sec)</th></tr>';
+    for(i=0;i<X.length;i++){
+      tab_html += `<tr><td>${X[i]}</td><td>${Y[i]}</td></tr>`;
+    }
+    document.querySelector('details > table').innerHTML = tab_html;
+
   });
   function updateChargeInfo() {
     console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
@@ -46,6 +51,11 @@ navigator.getBattery().then((battery) => {
     X.push(battery.level * 100); Y.push(Math.round(document.timeline.currentTime/1000));
     
     console.log(X); console.log(Y);
+    tab_html='<tr><th>Percentage</th><th>Time(sec)</th></tr>';
+    for(i=0;i<X.length;i++){
+      tab_html += `<tr><td>${X[i]}</td><td>${Y[i]}</td></tr>`;
+    }
+    document.querySelector('details > table').innerHTML = tab_html;
 
     document.querySelector('#present-fill').innerHTML=`
       #batt::before {
