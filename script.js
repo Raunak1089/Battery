@@ -34,7 +34,6 @@ navigator.getBattery().then((battery) => {
         top: 0;
         left: 0;
         height: 100%;
-        border-radius: 20px 0px 0px 20px;
         width: ${battery.level * 100}%;
         background-color: ${battery.charging ? "lime" : "red"};
       }
@@ -65,7 +64,6 @@ navigator.getBattery().then((battery) => {
         top: 0;
         left: 0;
         height: 100%;
-        border-radius: 20px 0px 0px 20px;
         width: ${battery.level * 100}%;
         background-color: ${battery.charging ? "lime" : "red"};
       }
