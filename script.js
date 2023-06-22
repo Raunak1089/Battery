@@ -1,4 +1,3 @@
-<script>
 
 let X = []; let Y = [];
 
@@ -174,4 +173,3 @@ let v = delta.toString();
 
 }
 
-	</script>
