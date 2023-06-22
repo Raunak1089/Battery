@@ -1,24 +1,47 @@
 <!DOCTYPE html>
  <html>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	 <title>Battery</title>
 	 <meta charset="UTF-8"/>
 	 <link rel="stylesheet" href="style.css" type="text/css"/>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="https://raunak1089.github.io/all_scripts/serviceWorker.min.js"></script>
-    <script src="https://raunak1089.github.io/all_scripts/push.min.js"></script>
-
-	 </head>
+<script src="https://raunak1089.github.io/all_scripts/stat_script.js"></script>
+ </head>
 	 <body>
-	 <div id="batt"><div id="charged"></div><div id="time_left"></div></div>
+  <div id="batt">
+    <div id="charged"></div>
+    <div id="time_left"></div>
+  </div>
+
+  <!-- <div id="info">
+    <div>
+      <span id="pno">0</span>
+      <span> persons present till now (</span>
+      <span id="tno"></span>
+      <span>%)</span>
+    </div>
+  </div> -->
+
   <div id="sliders">
    <input type="range" id="highest" min="0" max="100" step="1" value="90" onmousemove="hlab(this)" ontouchmove="hlab(this)" onclick="hlab(this)">
    <span class="label">Maximum level: </span><span id="h_label" class="label">90</span><span class="label">%</span>
    <input type="range" id="lowest" min="0" max="100" step="1" value="30" onmousemove="llab(this)" ontouchmove="llab(this)" onclick="llab(this)">
    <span class="label">Minimum level: </span><span id="l_label" class="label">30</span><span class="label">%</span>
   </div>
+  
 
-	<script src="script.js"></script>
+  <style id="present-fill">
+  #batt::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 20px;
+  }
+	 </style>
+
 	 </body>
  </html>
