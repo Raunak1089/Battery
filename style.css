@@ -71,16 +71,4 @@
       width: 100px;
     }
 
-	 </style>
 
-  <style id="present-fill">
-  #batt::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-  }
-	
