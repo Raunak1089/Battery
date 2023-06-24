@@ -2,21 +2,26 @@
  <html>
  <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link rel="icon" sizes="192x192" href="https://cdn.icon-icons.com/icons2/585/PNG/256/BatteryPower_Full_icon-icons.com_55240.png">
+	 <link rel="stylesheet" href="style.css" type="text/css"/>
+
 	 <title>Battery</title>
 	 <meta charset="UTF-8"/>
-	 <link rel="stylesheet" href="style.css" type="text/css"/>
-<script src="https://raunak1089.github.io/all_scripts/stat_script.js"></script>
+	 <!-- <link rel="stylesheet" href="style.css" type="text/css"/> -->
  </head>
 	 <body>
+
+    <div id="timer"></div>
+
   <div id="batt">
     <div id="charged"></div>
     <div id="time_left"></div>
   </div>
 
   <div id="sliders">
-   <input type="range" id="highest" min="0" max="100" step="1" value="90" onmousemove="hlab(this)" ontouchmove="hlab(this)" onclick="hlab(this)">
+   <input type="range" id="highest" min="0" max="100" step="1" value="90" oninput="hlab(this)">
    <span class="label">Maximum level: </span><span id="h_label" class="label">90</span><span class="label">%</span>
-   <input type="range" id="lowest" min="0" max="100" step="1" value="30" onmousemove="llab(this)" ontouchmove="llab(this)" onclick="llab(this)">
+   <input type="range" id="lowest" min="0" max="100" step="1" value="30" oninput="llab(this)">
    <span class="label">Minimum level: </span><span id="l_label" class="label">30</span><span class="label">%</span>
   </div>
   
@@ -27,18 +32,10 @@
   </details>
   
 
-  <style id="present-fill">
-  #batt::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-  }
-	 </style>
 
 <script src="script.js"></script>
+<script src="https://raunak1089.github.io/all_scripts/stat_script.js"></script>
 	 </body>
  </html>
+
+
