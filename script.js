@@ -218,8 +218,8 @@ let v = delta.toString();
         for (let j=0; j<=degree; j++){
             delta_c[i+(degree+1)*j] = all[j][all[j].length-1]
         }
-        a.push(det(delta_c)/det(delta));
-        //console.log(`a${i} = ${det(delta_c)/det(delta)}`)
+        a.push(Matrix.det(delta_c)/Matrix.det(delta));
+        //console.log(`a${i} = ${Matrix.det(delta_c)/Matrix.det(delta)}`)
     }
     
     
