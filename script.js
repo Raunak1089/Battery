@@ -149,10 +149,23 @@ navigator.getBattery().then((battery) => {
 // X = [1,2,3,4,5];
 // Y = [67,75,86,100,130];
 
+function LineartoMatrix(array, row, col) {
+  let mat = [];
+  let ind = 0;
+  for (let i = 0; i < row; i++) {
+    mat.push([]);
+    for (let j = 0; j < col; j++) {
+      mat[i].push(array[ind]);
+      ind++;
+    }
+  }
+  return mat;
+}
+
 function graduate(X, Y, degree) {
-    n = X.length;
+    let n = X.length;
     let effective_X = [];
-    for (x in X){
+    for (let x in X){
         if (effective_X.includes(X[x]) == false) {
             effective_X.push(X[x])
         }
@@ -161,80 +174,77 @@ function graduate(X, Y, degree) {
     let effective_n = effective_X.length;
 
     if (0 <= degree & degree < effective_n) {
-
-  n = X.length;
-
-t = X;
-
-    t_powers = []
-    for  (let i=0; i<=2*degree; i++){
-        t_powers.push([])
-        for (let j=0; j<n; j++){
-            t_powers[t_powers.length-1].push(t[j]**(i))
-        }
-    }
-
-
-    yt_prod = []
-    for (let i=0; i<=degree; i++){
-        yt_prod.push([])
-        for (let j=0; j<n; j++){
-            yt_prod[yt_prod.length-1].push(Y[j]*(t[j]**i))
-        }
-    }
-
-
-    let eq = '';
-    all = [];
-    for (let i=0; i<=degree; i++){
-        eq += `\n\n${sum(yt_prod[i])} = 0 `
-        all.push([])
-        for (let j=0; j<=degree; j++){
-                eq += `+ a${j}*${sum(t_powers[i+j])} `;
-                all[all.length-1].push(sum(t_powers[i+j]));
+        let t = X;
+        let t_powers = []
+        for  (let i=0; i<=2*degree; i++){
+            t_powers.push([])
+            for (let j=0; j<n; j++){
+                t_powers[t_powers.length-1].push(t[j]**(i))
+            }
         }
 
-        all[all.length-1].push(sum(yt_prod[i]))
-    }
 
-//console.log(eq);
-
-
-let delta, delta_c;
-
-    a = [];
-    delta = [];
-    for (let i=0; i<=degree; i++){
-        for (let j=0; j<=degree; j++){
-            delta.push(all[i][j]);
+        let yt_prod = []
+        for (let i=0; i<=degree; i++){
+            yt_prod.push([])
+            for (let j=0; j<n; j++){
+                yt_prod[yt_prod.length-1].push(Y[j]*(t[j]**i))
+            }
         }
-    }
 
 
-let v = delta.toString();
+        let eq = '';
+        let all = [];
+        for (let i=0; i<=degree; i++){
+            eq += `\n\n${sum(yt_prod[i])} = 0 `
+            all.push([])
+            for (let j=0; j<=degree; j++){
+                    eq += `+ a${j}*${sum(t_powers[i+j])} `;
+                    all[all.length-1].push(sum(t_powers[i+j]));
+            }
     
-    for (let i=0; i<=degree; i++){
-        delta_c = eval(`[${v}]`);
-        for (let j=0; j<=degree; j++){
-            delta_c[i+(degree+1)*j] = all[j][all[j].length-1]
+            all[all.length-1].push(sum(yt_prod[i]))
         }
-        a.push(Matrix.det(delta_c)/Matrix.det(delta));
-        //console.log(`a${i} = ${Matrix.det(delta_c)/Matrix.det(delta)}`)
-    }
+
+        console.log(eq);
+
+
+        let delta, delta_c;
+
+        let a = [];
+        delta = [];
+        for (let i=0; i<=degree; i++){
+            for (let j=0; j<=degree; j++){
+                delta.push(all[i][j]);
+            }
+        }
+        delta = LineartoMatrix(delta, degree+1, degree+1);
+
+        let v = delta.toString();
     
+        for (let i=0; i<=degree; i++){
+            delta_c = eval(`[${v}]`);
+            for (let j=0; j<=degree; j++){
+                delta_c[i+(degree+1)*j] = all[j][all[j].length-1]
+            }
+            delta_c = LineartoMatrix(delta_c, degree+1, degree+1);
+            a.push(Matrix.det(delta_c)/Matrix.det(delta));
+            console.log(delta_c);
+            console.log(delta);
+            console.log(`a${i} = ${Matrix.det(delta_c)/Matrix.det(delta)}`)
+        }
+        
     
-        final = `${a[0]}`
+        let final = `${a[0]}`
         for (let i=1; i<=degree; i++){
             final += ` + (${a[i]})*((t)**${i})`
         }
     
      
-        //console.log('\n\nGraduated function:\n')
-        // console.log(final)
+        // console.log('\n\nGraduated function:\n');
+        // console.log(final);
         return final;
-        
- }
+     }
 }
-
 
         
