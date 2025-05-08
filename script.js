@@ -206,7 +206,7 @@ function graduate(X, Y, degree) {
             all[all.length-1].push(sum(yt_prod[i]))
         }
 
-        console.log(eq);
+        // console.log(eq);
 
 
         let delta, delta_c;
@@ -229,9 +229,7 @@ function graduate(X, Y, degree) {
             }
             delta_c = LineartoMatrix(delta_c, degree+1, degree+1);
             a.push(Matrix.det(delta_c)/Matrix.det(delta));
-            console.log(delta_c);
-            console.log(delta);
-            console.log(`a${i} = ${Matrix.det(delta_c)/Matrix.det(delta)}`)
+            // console.log(`a${i} = ${Matrix.det(delta_c)/Matrix.det(delta)}`)
         }
         
     
