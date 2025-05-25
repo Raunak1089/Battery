@@ -199,19 +199,6 @@ navigator.getBattery().then((battery) => {
 // X = [1,2,3,4,5];
 // Y = [67,75,86,100,130];
 
-function LineartoMatrix(array, row, col) {
-  let mat = [];
-  let ind = 0;
-  for (let i = 0; i < row; i++) {
-    mat.push([]);
-    for (let j = 0; j < col; j++) {
-      mat[i].push(array[ind]);
-      ind++;
-    }
-  }
-  return mat;
-}
-
 function graduate(X, Y, degree) {
     let n = X.length;
     let effective_X = [];
